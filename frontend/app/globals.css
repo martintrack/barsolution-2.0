@@ -1549,3 +1549,60 @@ h4 {
   .sku-table-head span:nth-child(n+3), .sku-table-row span:nth-child(n+3) { display: none; }
   .adoption-wrap { flex-direction: column; align-items: flex-start; }
 }
+
+/* ─── Gemini AI enhancements ─── */
+
+.ai-top-priority {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  background: rgba(66, 107, 121, 0.08);
+  border: 0.0625rem solid rgba(66, 107, 121, 0.25);
+}
+
+.ai-top-priority strong {
+  font-size: 0.9375rem;
+  color: var(--steel);
+}
+
+.ai-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.urgency-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.urgency-high {
+  background: rgba(180, 82, 50, 0.14);
+  color: var(--copper);
+}
+
+.urgency-mid {
+  background: rgba(156, 104, 21, 0.12);
+  color: var(--amber-strong);
+}
+
+.urgency-low {
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+
+.ai-action-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+}
