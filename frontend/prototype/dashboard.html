@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Demo - Kobra</title>
+    <link rel="stylesheet" href="./styles.css?v=kobra-1" />
+  </head>
+  <body class="dashboard-page">
+    <header class="topbar dashboard-topbar" aria-label="Navegacion principal">
+      <a class="brand brand-logo" href="./index.html" aria-label="Kobra">
+        <img src="./assets/kobra-logo-cropped.png" alt="Kobra" />
+      </a>
+      <nav class="nav-links" aria-label="Secciones">
+        <a href="./index.html">Landing</a>
+        <a href="#recommendations">Recomendaciones</a>
+        <a href="#inventory">Inventario</a>
+        <a class="nav-action" href="#dashboard">Evento activo</a>
+      </nav>
+    </header>
+
+    <main class="app-shell" id="dashboard">
+      <aside class="app-sidebar" aria-label="Contexto del evento">
+        <div class="event-card">
+          <p class="section-kicker">Evento</p>
+          <h1>Warehouse Club</h1>
+          <dl>
+            <div>
+              <dt>Estado</dt>
+              <dd>Activo</dd>
+            </div>
+            <div>
+              <dt>Ventana</dt>
+              <dd>23:40 - 01:10</dd>
+            </div>
+            <div>
+              <dt>Modo</dt>
+              <dd>Datos demo</dd>
+            </div>
+          </dl>
+        </div>
+
+        <nav class="side-nav" aria-label="Vistas del dashboard">
+          <a href="#overview">Overview</a>
+          <a href="#recommendations">Recomendaciones</a>
+          <a href="#inventory">Inventario</a>
+          <a href="#logs">Logs</a>
+        </nav>
+
+        <div class="engine-card">
+          <span>Resumen ejecutivo</span>
+          <strong>$180K de margen incremental estimado</strong>
+          <p>3 oportunidades activas y 312 unidades con riesgo de sobrante.</p>
+        </div>
+      </aside>
+
+      <section class="app-main">
+        <div class="dashboard-hero">
+          <div>
+            <p class="section-kicker">Revenue cockpit</p>
+            <h2>Resultados, margen y riesgo comercial del evento</h2>
+            <p>
+              Vista demo para productor. El objetivo es mostrar cuanto margen se puede proteger, que stock podria sobrar y que decisiones comerciales tienen prioridad.
+            </p>
+          </div>
+          <div class="event-meta" aria-label="Estado del evento">
+            <span>Activo</span>
+            <span>Ultima actualizacion 23:42</span>
+          </div>
+        </div>
+
+        <section id="overview" class="dashboard-grid" aria-label="Resumen de KPIs">
+          <article class="kpi-tile kpi-primary">
+            <span>Margen incremental estimado</span>
+            <strong>$180K</strong>
+            <p>Oportunidad proyectada para este evento.</p>
+          </article>
+          <article class="kpi-tile">
+            <span>Venta total barra</span>
+            <strong>$8.4M</strong>
+            <p>Acumulado demo del evento.</p>
+          </article>
+          <article class="kpi-tile">
+            <span>Sobrante estimado</span>
+            <strong>312 u.</strong>
+            <p>Stock proyectado al cierre.</p>
+          </article>
+          <article class="kpi-tile">
+            <span>Margen promedio</span>
+            <strong>43%</strong>
+            <p>Promedio ponderado por venta.</p>
+          </article>
+        </section>
+
+        <section class="dashboard-layout">
+          <article class="insight-panel chart-card" aria-label="Ritmo de ventas">
+            <div class="panel-heading">
+              <h3>Ventas y margen por categoria</h3>
+              <span>Ultimos 60 min</span>
+            </div>
+            <svg class="line-chart" viewBox="0 0 700 240" role="img" aria-label="Grafico de ritmo comercial por categoria">
+              <path class="chart-grid" d="M0 45H700M0 105H700M0 165H700M0 225H700" />
+              <path class="line line-amber" d="M0 190 C75 165, 118 132, 180 142 S282 168, 348 96 S455 48, 526 74 S630 116, 700 78" />
+              <path class="line line-steel" d="M0 110 C82 112, 138 94, 205 101 S318 126, 382 112 S492 96, 560 111 S638 142, 700 130" />
+              <path class="line line-copper" d="M0 212 C82 205, 154 204, 224 196 S338 182, 410 191 S540 212, 700 208" />
+            </svg>
+            <div class="legend-row" aria-label="Leyenda del grafico">
+              <span><i class="legend-amber"></i>Cerveza premium</span>
+              <span><i class="legend-steel"></i>Agua</span>
+              <span><i class="legend-copper"></i>RTD lento</span>
+            </div>
+          </article>
+
+          <aside class="insight-panel run-panel" aria-label="Estado del motor">
+            <div class="panel-heading">
+              <h3>Resumen financiero</h3>
+              <span>Evento activo</span>
+            </div>
+            <dl class="run-list">
+              <div>
+                <dt>Ventas acumuladas</dt>
+                <dd>$8.4M</dd>
+              </div>
+              <div>
+                <dt>Margen estimado</dt>
+                <dd>$3.6M</dd>
+              </div>
+              <div>
+                <dt>Riesgo sobrante</dt>
+                <dd>$420K</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section id="recommendations" class="dashboard-layout" aria-label="Recomendaciones y evidencia">
+          <div class="decision-list">
+            <div class="panel-heading">
+              <h3>Decisiones comerciales priorizadas</h3>
+              <span>3 activas</span>
+            </div>
+
+            <article class="decision-item decision-high">
+              <div>
+                <span class="decision-type">Riesgo alto</span>
+                <h4>Activar oferta controlada para gin tonic lata</h4>
+                <p>68% de stock restante con venta bajo objetivo. Ventana sugerida: 45 minutos.</p>
+              </div>
+              <div class="decision-actions">
+                <button type="button">Aprobar</button>
+                <button type="button">Descartar</button>
+              </div>
+            </article>
+
+            <article class="decision-item">
+              <div>
+                <span class="decision-type">Proteger margen</span>
+                <h4>No descontar agua sin gas</h4>
+                <p>Sell-through alto, stock controlado y rotacion sobre promedio.</p>
+              </div>
+              <div class="decision-actions">
+                <button type="button">Aprobar</button>
+                <button type="button">Descartar</button>
+              </div>
+            </article>
+
+            <article class="decision-item">
+              <div>
+                <span class="decision-type">Empuje operativo</span>
+                <h4>Priorizar cerveza premium en zona norte</h4>
+                <p>Margen unitario alto y stock suficiente. Recomendacion valida hasta 00:20.</p>
+              </div>
+              <div class="decision-actions">
+                <button type="button">Aprobar</button>
+                <button type="button">Descartar</button>
+              </div>
+            </article>
+          </div>
+
+          <aside class="evidence-panel" aria-label="Evidencia de recomendacion">
+            <div class="panel-heading">
+              <h3>Evidencia</h3>
+              <span>Gin tonic lata</span>
+            </div>
+            <dl class="evidence-list">
+              <div>
+                <dt>Stock restante</dt>
+                <dd>68%</dd>
+              </div>
+              <div>
+                <dt>Venta por hora</dt>
+                <dd>9 u.</dd>
+              </div>
+              <div>
+                <dt>Margen unitario</dt>
+                <dd>$1.450</dd>
+              </div>
+              <div>
+                <dt>Tiempo restante</dt>
+                <dd>90 min</dd>
+              </div>
+            </dl>
+            <p class="evidence-copy">
+              Regla disparada: stock alto + rotacion bajo objetivo + margen minimo protegido.
+            </p>
+          </aside>
+        </section>
+
+        <section id="inventory" class="insight-panel table-panel" aria-label="Inventario en riesgo">
+          <div class="panel-heading">
+              <h3>Inventario, margen y riesgo por SKU</h3>
+            <span>Prioridad comercial</span>
+          </div>
+          <div class="data-table" role="table" aria-label="Inventario por producto">
+            <div role="row">
+              <span role="columnheader">Producto</span>
+              <span role="columnheader">Zona</span>
+              <span role="columnheader">Stock</span>
+              <span role="columnheader">Sell-through</span>
+              <span role="columnheader">Margen</span>
+              <span role="columnheader">Estado</span>
+            </div>
+            <div role="row">
+              <span role="cell">Gin tonic lata</span>
+              <span role="cell">Norte</span>
+              <span role="cell">204 u.</span>
+              <span role="cell">32%</span>
+              <span role="cell">$1.450</span>
+              <span role="cell">Riesgo alto</span>
+            </div>
+            <div role="row">
+              <span role="cell">Agua sin gas</span>
+              <span role="cell">General</span>
+              <span role="cell">96 u.</span>
+              <span role="cell">79%</span>
+              <span role="cell">$520</span>
+              <span role="cell">No descontar</span>
+            </div>
+            <div role="row">
+              <span role="cell">Cerveza premium</span>
+              <span role="cell">Norte</span>
+              <span role="cell">188 u.</span>
+              <span role="cell">54%</span>
+              <span role="cell">$1.920</span>
+              <span role="cell">Empujar</span>
+            </div>
+            <div role="row">
+              <span role="cell">Energetica 355</span>
+              <span role="cell">Sur</span>
+              <span role="cell">108 u.</span>
+              <span role="cell">41%</span>
+              <span role="cell">$880</span>
+              <span role="cell">Observar</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="logs" class="dashboard-layout compact-layout" aria-label="Actividad reciente">
+          <article class="insight-panel">
+            <div class="panel-heading">
+              <h3>Señales comerciales</h3>
+              <span>Ultima hora</span>
+            </div>
+            <ol class="activity-list">
+              <li><span>23:42</span> Cerveza premium sostiene margen sobre objetivo.</li>
+              <li><span>23:40</span> Agua sin gas rota bien: no requiere descuento.</li>
+              <li><span>23:38</span> Gin tonic lata proyecta sobrante al cierre.</li>
+            </ol>
+          </article>
+          <article class="insight-panel">
+            <div class="panel-heading">
+              <h3>Decisiones aprobadas</h3>
+              <span>Impacto demo</span>
+            </div>
+            <ol class="activity-list">
+              <li><span>23:31</span> "No descontar agua" protege margen unitario.</li>
+              <li><span>23:22</span> Oferta de energetica descartada por bajo impacto.</li>
+              <li><span>23:10</span> Run #024 priorizo oportunidades por margen.</li>
+            </ol>
+          </article>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

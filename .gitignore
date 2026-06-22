@@ -1,0 +1,32 @@
+.DS_Store
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Dependencies and build output
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+dist/
+frontend/dist/
+
+# Tooling caches
+.turbo/
+frontend/.turbo/
+.vercel/
+frontend/.vercel/
+coverage/
+frontend/coverage/
+
+# TypeScript incremental cache
+*.tsbuildinfo
+frontend/*.tsbuildinfo
