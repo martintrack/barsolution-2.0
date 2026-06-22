@@ -1,4 +1,4 @@
-import { buildDashboardSnapshot, type EventInput, type ProductTelemetry } from "./domain";
+import { buildDashboardSnapshot, buildMetricasSnapshot, type EventInput, type ProductTelemetry } from "./domain";
 
 const event: EventInput = {
   name: "Warehouse Club",
@@ -75,3 +75,5 @@ export const {
   producerKpis,
   recommendations
 } = dashboardSnapshot;
+
+export const metricasSnapshot = buildMetricasSnapshot(event, products);

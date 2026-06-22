@@ -1,4 +1,4 @@
-import type { ChartSeries, DashboardSnapshot, InventoryRisk, Kpi, Recommendation } from "./types";
+import type { ChartSeries, DashboardSnapshot, InventoryRisk, Kpi, MetricasSnapshot, Recommendation, SkuHourlySeries, SkuMetric } from "./types";
 
 export type EventInput = {
   name: string;
@@ -247,4 +247,76 @@ function formatPercent(value: number) {
 
 function sum(values: number[]) {
   return values.reduce((total, value) => total + value, 0);
+}
+
+export function buildMetricasSnapshot(event: EventInput, products: ProductTelemetry[]): MetricasSnapshot {
+  const scored = products.map((p) => scoreProduct(p, event.hoursRemaining));
+
+  const skuMetrics: SkuMetric[] = scored.map((p) => ({
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    zone: p.zone,
+    revenue: p.revenue,
+    revenueFormatted: formatMoney(p.revenue),
+    grossMargin: p.grossMargin,
+    grossMarginFormatted: formatMoney(p.grossMargin),
+    marginRate: p.revenue > 0 ? p.grossMargin / p.revenue : 0,
+    marginRateFormatted: formatPercent(p.revenue > 0 ? p.grossMargin / p.revenue : 0),
+    sellThrough: p.sellThrough,
+    sellThroughFormatted: formatPercent(p.sellThrough),
+    targetSellThrough: p.targetSellThrough,
+    targetSellThroughFormatted: formatPercent(p.targetSellThrough),
+    sellThroughGap: Math.max(0, p.targetSellThrough - p.sellThrough),
+    currentStock: p.currentStock,
+    projectedLeftover: p.projectedLeftover,
+    projectedLeftoverValue: p.projectedLeftoverValue,
+    projectedLeftoverValueFormatted: formatMoney(p.projectedLeftoverValue),
+    velocityLastHour: p.velocityLastHour,
+    unitMargin: p.unitMargin,
+    unitMarginFormatted: formatUnitMoney(p.unitMargin),
+    status: getInventoryStatus(p),
+    riskScore: p.riskScore
+  }));
+
+  const tones: ChartSeries["tone"][] = ["amber", "steel", "copper", "amber"];
+  const hourlySeries: SkuHourlySeries[] = scored.map((p, i) => {
+    const rampPattern = [0.6, 0.8, 1.0, 1.15, 1.05, 0.9];
+    const weightSum = rampPattern.reduce((a, b) => a + b, 0);
+    const hours = ["23:40", "23:50", "00:00", "00:10", "00:30", "00:50"];
+    return {
+      skuId: p.id,
+      name: p.name,
+      tone: tones[i % tones.length],
+      buckets: rampPattern.map((w, idx) => {
+        const units = Math.round((p.unitsSold * w) / weightSum);
+        return { label: hours[idx], unitsSold: units, revenue: units * p.unitPrice };
+      })
+    };
+  });
+
+  const productosLentos = [...skuMetrics]
+    .filter((s) => s.sellThroughGap > 0.05)
+    .sort((a, b) => b.sellThroughGap - a.sellThroughGap);
+
+  const productosSobrante = [...skuMetrics]
+    .filter((s) => s.projectedLeftover > 0)
+    .sort((a, b) => b.projectedLeftoverValue - a.projectedLeftoverValue);
+
+  const totalSobrante = sum(skuMetrics.map((s) => s.projectedLeftoverValue));
+  const topByMargin = [...skuMetrics].sort((a, b) => b.grossMargin - a.grossMargin)[0];
+  const worstST = [...skuMetrics].sort((a, b) => (a.sellThrough - a.targetSellThrough) - (b.sellThrough - b.targetSellThrough))[0];
+  const totalVentasHora = sum(scored.map((p) => p.velocityLastHour * p.unitPrice));
+
+  return {
+    skuMetrics,
+    hourlySeries,
+    productosLentos,
+    productosSobrante,
+    adoptionStats: { approved: 1, discarded: 1, pending: 1 },
+    ventasPorHoraActual: formatMoney(totalVentasHora),
+    topProductByMargin: topByMargin?.name ?? "—",
+    worstSellThrough: worstST ? `${worstST.name} (${worstST.sellThroughFormatted})` : "—",
+    totalSobranteFormatted: formatMoney(totalSobrante)
+  };
 }

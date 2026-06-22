@@ -7,10 +7,10 @@ export function DashboardNav() {
       <KobraLogo />
       <nav className="nav-links" aria-label="Secciones">
         <Link href="/">Landing</Link>
-        <Link href="#recommendations">Recomendaciones</Link>
-        <Link href="#inventory">Inventario</Link>
-        <Link className="nav-action" href="/dashboard">
-          Evento activo
+        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/dashboard/metricas">Métricas</Link>
+        <Link className="nav-action" href="/dashboard/metricas#recomendaciones-ia">
+          Recomendaciones IA
         </Link>
       </nav>
     </header>

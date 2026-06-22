@@ -63,3 +63,61 @@ export type DashboardSnapshot = {
   commercialSignals: ActivityItem[];
   decisionLog: ActivityItem[];
 };
+
+export type SkuMetric = {
+  id: string;
+  name: string;
+  category: string;
+  zone: string;
+  revenue: number;
+  revenueFormatted: string;
+  grossMargin: number;
+  grossMarginFormatted: string;
+  marginRate: number;
+  marginRateFormatted: string;
+  sellThrough: number;
+  sellThroughFormatted: string;
+  targetSellThrough: number;
+  targetSellThroughFormatted: string;
+  sellThroughGap: number;
+  currentStock: number;
+  projectedLeftover: number;
+  projectedLeftoverValue: number;
+  projectedLeftoverValueFormatted: string;
+  velocityLastHour: number;
+  unitMargin: number;
+  unitMarginFormatted: string;
+  status: string;
+  riskScore: number;
+};
+
+export type HourlyBucket = {
+  label: string;
+  unitsSold: number;
+  revenue: number;
+};
+
+export type SkuHourlySeries = {
+  skuId: string;
+  name: string;
+  tone: ChartSeries["tone"];
+  buckets: HourlyBucket[];
+};
+
+export type AdoptionStats = {
+  approved: number;
+  discarded: number;
+  pending: number;
+};
+
+export type MetricasSnapshot = {
+  skuMetrics: SkuMetric[];
+  hourlySeries: SkuHourlySeries[];
+  productosLentos: SkuMetric[];
+  productosSobrante: SkuMetric[];
+  adoptionStats: AdoptionStats;
+  ventasPorHoraActual: string;
+  topProductByMargin: string;
+  worstSellThrough: string;
+  totalSobranteFormatted: string;
+};

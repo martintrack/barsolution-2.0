@@ -2,7 +2,7 @@ import { ActivityList } from "@/components/dashboard/ActivityList";
 import { DashboardNav } from "@/components/dashboard/DashboardNav";
 import { InventoryTable } from "@/components/dashboard/InventoryTable";
 import { KpiCard } from "@/components/dashboard/KpiCard";
-import { RecommendationsPanel } from "@/components/dashboard/RecommendationsPanel";
+import { RecommendationsWithAI } from "@/components/dashboard/RecommendationsWithAI";
 import { RevenueChart } from "@/components/dashboard/RevenueChart";
 import type { DashboardSnapshot } from "@/lib/types";
 
@@ -96,7 +96,7 @@ export function DashboardPage({ snapshot }: DashboardPageProps) {
           </section>
 
           <section id="recommendations" className="dashboard-layout" aria-label="Recomendaciones y evidencia">
-            <RecommendationsPanel recommendations={recommendations} />
+            <RecommendationsWithAI recommendations={recommendations} producerKpis={producerKpis} eventSummary={eventSummary} />
             <aside className="evidence-panel" aria-label="Evidencia de recomendación">
               <div className="panel-heading">
                 <h3>Evidencia</h3>
