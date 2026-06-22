@@ -3,7 +3,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kobra",
-  description: "Revenue management para barras de eventos."
+  description: "Revenue management para barras de eventos.",
+  icons: {
+    icon: "/favicon.ico"
+  }
 };
 
 export default function RootLayout({
